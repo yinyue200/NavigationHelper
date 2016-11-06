@@ -6,7 +6,7 @@ namespace Yinyue200.NavigationHelper
     /// <summary>
     /// 表示可以作为内部页的页
     /// </summary>
-    interface IRestPage
+    public interface IRestPage
     {
         /// <summary>
         /// 保存内部页的数据

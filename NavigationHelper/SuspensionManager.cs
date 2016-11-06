@@ -20,7 +20,7 @@ namespace Yinyue200.NavigationHelper
     /// 在会话之间传递，但在应用程序崩溃时应放弃
     /// 升级时应丢弃的信息。
     /// </summary>
-    internal sealed class SuspensionManager
+    public sealed class SuspensionManager
     {
         private static Dictionary<string, object> _sessionState = new Dictionary<string, object>();
         private static List<Type> _knownTypes = new List<Type>();
