@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace yinyue200.NavigationHelper
+namespace Yinyue200.NavigationHelper
 {
     public static class NavigationDictionaryHelper
     {

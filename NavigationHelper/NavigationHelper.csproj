@@ -7,7 +7,7 @@
     <ProjectGuid>{915656BB-489A-4B00-8290-74B469FA4FC4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>yinyue200.NavigationHelper</RootNamespace>
+    <RootNamespace>Yinyue200.NavigationHelper</RootNamespace>
     <AssemblyName>NavigationHelper</AssemblyName>
     <DefaultLanguage>zh-CN</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>

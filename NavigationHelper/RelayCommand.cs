@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace yinyue200.NavigationHelper
+namespace Yinyue200.NavigationHelper
 {
     /// <summary>
     /// 专门用于中继自身功能的命令

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.Foundation.Collections;
 
-namespace yinyue200.NavigationHelper
+namespace Yinyue200.NavigationHelper
 {
     /// <summary>
     /// 支持重新进入以用作默认视图模型的 IObservableMap 的
