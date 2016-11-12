@@ -94,12 +94,12 @@ namespace Yinyue200.NavigationHelper
         }
         private void aaa()
         {
-#if DEBUG
+//#if DEBUG
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
                 return;
             }
-#endif
+//#endif
             // 当此页是可视化树的一部分时，进行两个更改: 
             // 1) 将应用程序视图状态映射到页的可视状态
             // 2) 处理用于在 Windows 中向前和向后移动的
