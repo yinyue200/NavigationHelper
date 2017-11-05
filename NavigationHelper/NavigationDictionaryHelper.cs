@@ -64,31 +64,22 @@ namespace Yinyue200.NavigationHelper
         /// <returns></returns>
         public static Dictionary<string,string> FormatFormString(string formatString)
         {
-            if (formatString == null)
+            if (url == null)
                 throw new System.ArgumentNullException("url");
 
-            var nvc = new Dictionary<string,string>();
+            System.Collections.Generic.IDictionary<string, string> newdic() => new System.Collections.Generic.Dictionary<string, string>();
 
-            if (formatString == "")
-                return nvc;
+            if (url == "")
+                return newdic();
 
-            int questionMarkIndex = formatString.IndexOf('?');
+            int questionMarkIndex = url.IndexOf('?');
 
-            if (questionMarkIndex == -1)
-            {
-                return nvc;
-            }
-            if (questionMarkIndex == formatString.Length - 1)
-                return nvc;
-            string ps = formatString.Substring(questionMarkIndex + 1);
+            if (questionMarkIndex == -1 || questionMarkIndex == url.Length - 1)
+                return newdic();
+            string ps = url.Substring(questionMarkIndex + 1);
 
             // 开始分析参数对    
-            System.Text.RegularExpressions.Regex re = new System.Text.RegularExpressions.Regex(@"(^|&)?(\w+)=([^&]+)(&|$)?");
-            foreach (System.Text.RegularExpressions.Match m in re.Matches(ps))
-            {
-                nvc.Add(m.Result("$2").ToLower(), System.Net.WebUtility.UrlDecode(m.Result("$3")));
-            }
-            return nvc;
+            return new Regex(@"(^|&)?(\w+)=([^&]+)(&|$)?").Matches(ps).Cast<Match>().ToDictionary(m=> m.Result("$2").ToLowerInvariant(),m=> WebUtility.UrlDecode(m.Result("$3")));
         }
     }
 }
