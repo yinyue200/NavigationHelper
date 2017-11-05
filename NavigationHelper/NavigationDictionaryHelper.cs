@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Yinyue200.NavigationHelper
@@ -64,19 +66,19 @@ namespace Yinyue200.NavigationHelper
         /// <returns></returns>
         public static Dictionary<string,string> FormatFormString(string formatString)
         {
-            if (url == null)
+            if (formatString == null)
                 throw new System.ArgumentNullException("url");
 
-            System.Collections.Generic.IDictionary<string, string> newdic() => new System.Collections.Generic.Dictionary<string, string>();
+            System.Collections.Generic.Dictionary<string, string> newdic() => new System.Collections.Generic.Dictionary<string, string>();
 
-            if (url == "")
+            if (formatString == "")
                 return newdic();
 
-            int questionMarkIndex = url.IndexOf('?');
+            int questionMarkIndex = formatString.IndexOf('?');
 
-            if (questionMarkIndex == -1 || questionMarkIndex == url.Length - 1)
+            if (questionMarkIndex == -1 || questionMarkIndex == formatString.Length - 1)
                 return newdic();
-            string ps = url.Substring(questionMarkIndex + 1);
+            string ps = formatString.Substring(questionMarkIndex + 1);
 
             // 开始分析参数对    
             return new Regex(@"(^|&)?(\w+)=([^&]+)(&|$)?").Matches(ps).Cast<Match>().ToDictionary(m=> m.Result("$2").ToLowerInvariant(),m=> WebUtility.UrlDecode(m.Result("$3")));
