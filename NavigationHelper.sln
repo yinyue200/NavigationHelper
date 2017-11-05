@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavigationHelper", "NavigationHelper\NavigationHelper.csproj", "{915656BB-489A-4B00-8290-74B469FA4FC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavigionHelper", "NavigionHelper\NavigionHelper.csproj", "{04370458-CE0B-439C-B1F5-56F7E30178FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,27 @@ Global
 		{915656BB-489A-4B00-8290-74B469FA4FC4}.Release|x64.Build.0 = Release|x64
 		{915656BB-489A-4B00-8290-74B469FA4FC4}.Release|x86.ActiveCfg = Release|x86
 		{915656BB-489A-4B00-8290-74B469FA4FC4}.Release|x86.Build.0 = Release|x86
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Debug|ARM.Build.0 = Debug|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Debug|x64.Build.0 = Debug|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Debug|x86.Build.0 = Debug|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Release|ARM.ActiveCfg = Release|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Release|ARM.Build.0 = Release|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Release|x64.ActiveCfg = Release|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Release|x64.Build.0 = Release|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Release|x86.ActiveCfg = Release|Any CPU
+		{04370458-CE0B-439C-B1F5-56F7E30178FF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {484F00A2-0B45-4F25-8D35-4CBD25552F11}
 	EndGlobalSection
 EndGlobal
