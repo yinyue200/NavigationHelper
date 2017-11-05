@@ -5,6 +5,7 @@
     <AssemblyName>NavigationHelper</AssemblyName>
     <RootNamespace>NavigationHelper</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>NavigationHelper.netstandard</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
