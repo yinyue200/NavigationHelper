@@ -178,6 +178,10 @@ namespace Yinyue200.NavigationHelper
                 }
                 return _goForwardCommand;
             }
+            set
+            {
+                _goForwardCommand = value;
+            }
         }
 
         /// <summary>
