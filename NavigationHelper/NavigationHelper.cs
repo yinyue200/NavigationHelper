@@ -106,7 +106,7 @@ namespace Yinyue200.NavigationHelper
                 // 仅当占用整个窗口时，键盘和鼠标导航才适用
                 // 直接侦听窗口，因此无需焦点
                 //Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated +=CoreDispatcher_AcceleratorKeyActivated;//键盘导航
-                Window.Current.CoreWindow.PointerReleased += this.CoreWindow_PointerReleased;
+                Window.Current.CoreWindow.PointerPressed += this.CoreWindow_PointerPressed;
             };
 
             // 当页不再可见时，撤消相同更改
@@ -114,7 +114,7 @@ namespace Yinyue200.NavigationHelper
             {
                 Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested -= HardwareButtons_BackPressed;
                 //Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated -=CoreDispatcher_AcceleratorKeyActivated;
-                Window.Current.CoreWindow.PointerReleased -= this.CoreWindow_PointerReleased;
+                Window.Current.CoreWindow.PointerPressed -= this.CoreWindow_PointerPressed;
             };
         }
         public NavigationHelper(Page page,bool usenav)
@@ -314,7 +314,7 @@ namespace Yinyue200.NavigationHelper
         /// </summary>
         /// <param name="sender">触发事件的实例。</param>
         /// <param name="e">描述导致事件的条件的事件数据。</param>
-        private void CoreWindow_PointerReleased(CoreWindow sender,PointerEventArgs e)
+        private void CoreWindow_PointerPressed(CoreWindow sender,PointerEventArgs e)
         {
             if(/*!e.Handled*/true)
             {
