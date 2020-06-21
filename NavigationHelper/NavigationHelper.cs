@@ -104,13 +104,9 @@ namespace Yinyue200.NavigationHelper
             {
                 Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += HardwareButtons_BackPressed;
                 // 仅当占用整个窗口时，键盘和鼠标导航才适用
-                if (this.Page.ActualHeight == Window.Current.Bounds.Height &&
-                    this.Page.ActualWidth == Window.Current.Bounds.Width)
-                {
-                    // 直接侦听窗口，因此无需焦点
-                    Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated +=CoreDispatcher_AcceleratorKeyActivated;//键盘导航
-                    Window.Current.CoreWindow.PointerReleased += this.CoreWindow_PointerReleased;
-                }
+                // 直接侦听窗口，因此无需焦点
+                //Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated +=CoreDispatcher_AcceleratorKeyActivated;//键盘导航
+                Window.Current.CoreWindow.PointerReleased += this.CoreWindow_PointerReleased;
             };
 
             // 当页不再可见时，撤消相同更改
