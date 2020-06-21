@@ -1,5 +1,4 @@
-﻿//#define TurnOnForward//指定是否启用前进导航
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,19 +14,17 @@ namespace Yinyue200.NavigationHelper
 {
     public class NavigationBackingOrForwardingEventArgs:EventArgs
     {
-        public NavigationBackingOrForwardingEventArgs(From from)
+        public NavigationBackingOrForwardingEventArgs(NavigationEventSource source)
         {
-            this.from = from;
+            this.EventSource = source;
         }
-#if TurnOnForward
-        public bool isback
+        public bool IsForward
         {
             get; set;
         } = true;
-#endif
         public bool Handled { get; set; } = false;
-        public From from { get; set; }
-        public enum From { System,KeyBoard,Mouse};
+        public NavigationEventSource EventSource { get; set; }
+        public enum NavigationEventSource { System,KeyBoard,Mouse};
     }
     /// <summary>
     /// NavigationHelper 协助在页面间进行导航。 它提供一些命令，用于
@@ -222,14 +219,12 @@ namespace Yinyue200.NavigationHelper
         /// </summary>
         public virtual void GoForward()
         {
-#if TurnOnForward
             if (this.Frame != null && this.Frame.CanGoForward) this.Frame.GoForward();
-#endif
         }
         private void InvokeBack(NavigationBackingOrForwardingEventArgs earg)
         {
             if (PageBacking == null) return;
-            var lt=PageBacking.GetInvocationList().Reverse();
+            var lt = PageBacking.GetInvocationList().Reverse();
             foreach(EventHandler<NavigationBackingOrForwardingEventArgs> one in lt)
             {
                 one.Invoke(this,earg);
@@ -244,7 +239,7 @@ namespace Yinyue200.NavigationHelper
         {
             if(!e.Handled )
             {
-                var ev = new NavigationBackingOrForwardingEventArgs(NavigationBackingOrForwardingEventArgs.From.System);
+                var ev = new NavigationBackingOrForwardingEventArgs(NavigationBackingOrForwardingEventArgs.NavigationEventSource.System);
                 InvokeBack(ev);
                 if (!ev.Handled)
                 {
@@ -293,7 +288,7 @@ namespace Yinyue200.NavigationHelper
                     {
                         // 在按上一页键或 Alt+向左键时向后导航
                         e.Handled = true;
-                        var ev = new NavigationBackingOrForwardingEventArgs(NavigationBackingOrForwardingEventArgs.From.Mouse);
+                        var ev = new NavigationBackingOrForwardingEventArgs(NavigationBackingOrForwardingEventArgs.NavigationEventSource.Mouse);
                         InvokeBack(ev);
                         if (!ev.Handled)
                             this.GoBackCommand.Execute(null);
@@ -303,12 +298,10 @@ namespace Yinyue200.NavigationHelper
                     {
                         // 在按下一页键或 Alt+向右键时向前导航
                         e.Handled = true;
-#if TurnOnForward
-                        var ev = new NavigationBackingOrForwardingEvenArgs(NavigationBackingOrForwardingEvenArgs.From.Mouse) { isback = false };
+                        var ev = new NavigationBackingOrForwardingEventArgs(NavigationBackingOrForwardingEventArgs.NavigationEventSource.Mouse) { IsForward = false };
                         PageBacking?.Invoke(this, ev);
                         if (!ev.Handled)
                             this.GoForwardCommand.Execute(null);
-#endif
                     }
                 }
             }
@@ -323,7 +316,7 @@ namespace Yinyue200.NavigationHelper
         /// <param name="e">描述导致事件的条件的事件数据。</param>
         private void CoreWindow_PointerPressed(CoreWindow sender,PointerEventArgs e)
         {
-            if(/*!e.Handled */true )
+            if(!e.Handled)
             {
                 var properties = e.CurrentPoint.Properties;
 
@@ -338,18 +331,16 @@ namespace Yinyue200.NavigationHelper
                 if (backPressed ^ forwardPressed)
                 {
                     e.Handled = true;
-                    var ev = new NavigationBackingOrForwardingEventArgs(NavigationBackingOrForwardingEventArgs.From.Mouse);
+                    var ev = new NavigationBackingOrForwardingEventArgs(NavigationBackingOrForwardingEventArgs.NavigationEventSource.Mouse);
                     InvokeBack(ev);
                     if (!ev.Handled)
                     {
                         if (backPressed) this.GoBackCommand.Execute(null);
-#if TurnOnForward
                         if (forwardPressed)
                         {
-                            ev.isback = false;
+                            ev.IsForward = false;
                             this.GoForwardCommand.Execute(null);
                         }
-#endif
                     }
                 }
             }
