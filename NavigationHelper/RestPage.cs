@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace Yinyue200.NavigationHelper
@@ -18,9 +19,10 @@ namespace Yinyue200.NavigationHelper
     /// </summary>
     public class RestPage:BasicPage,IRestPage
     {
+        public static Func<Page,bool,NavigationHelper> RestPageNavigationHelperCreator = (Page page,bool usenav) => new NavigationHelper(page, usenav);
         public RestPage ():base(null)
         {
-            ReSet(new NavigationHelper(this, false));
+            ReSet(RestPageNavigationHelperCreator(this, false));
         }
         public void SaveData()
         {
@@ -32,21 +34,18 @@ namespace Yinyue200.NavigationHelper
     /// </summary>
     public class BasicPage:Page
     {
-        private NavigationHelper navigationHelper;
+        public static Func<Page,NavigationHelper> BasicPageNavigationHelperCreator = (Page page) => new NavigationHelper(page);
         /// <summary>
         /// 获取与此 <see cref="Page"/> 关联的 <see cref="NavigationHelper"/>。
         /// </summary>
-        public NavigationHelper NavigationHelper
-        {
-            get { return this.navigationHelper; }
-        }
+        public NavigationHelper NavigationHelper { get; private set; }
         public BasicPage ()
         {
             ReSet();
         }
         protected void ReSet()
         {
-            ReSet(new NavigationHelper(this));
+            ReSet(BasicPageNavigationHelperCreator(this));
         }
         public BasicPage (NavigationHelper helper)
         {
@@ -57,9 +56,9 @@ namespace Yinyue200.NavigationHelper
         }
         protected void ReSet(NavigationHelper helper)
         {
-            this.navigationHelper = helper;
-            this.navigationHelper.LoadState += NavigationHelper_LoadState;
-            this.navigationHelper.SaveState += NavigationHelper_SaveState;
+            this.NavigationHelper = helper;
+            this.NavigationHelper.LoadState += NavigationHelper_LoadState;
+            this.NavigationHelper.SaveState += NavigationHelper_SaveState;
         }
         /// <summary>
         /// 保留与此页关联的状态，以防挂起应用程序或
@@ -89,11 +88,11 @@ namespace Yinyue200.NavigationHelper
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            navigationHelper.OnNavigatedTo(e);
+            NavigationHelper.OnNavigatedTo(e);
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            navigationHelper.OnNavigatedFrom(e);
+            NavigationHelper.OnNavigatedFrom(e);
         }
     }
 }
