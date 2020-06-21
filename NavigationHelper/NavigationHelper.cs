@@ -21,7 +21,7 @@ namespace Yinyue200.NavigationHelper
         public bool IsForward
         {
             get; set;
-        } = true;
+        } = false;
         public bool Handled { get; set; } = false;
         public NavigationEventSource EventSource { get; set; }
         public enum NavigationEventSource { System,KeyBoard,Mouse};
@@ -298,7 +298,7 @@ namespace Yinyue200.NavigationHelper
                     {
                         // 在按下一页键或 Alt+向右键时向前导航
                         e.Handled = true;
-                        var ev = new NavigationBackingOrForwardingEventArgs(NavigationBackingOrForwardingEventArgs.NavigationEventSource.Mouse) { IsForward = false };
+                        var ev = new NavigationBackingOrForwardingEventArgs(NavigationBackingOrForwardingEventArgs.NavigationEventSource.Mouse) { IsForward = true };
                         PageBacking?.Invoke(this, ev);
                         if (!ev.Handled)
                             this.GoForwardCommand.Execute(null);
@@ -338,7 +338,7 @@ namespace Yinyue200.NavigationHelper
                         if (backPressed) this.GoBackCommand.Execute(null);
                         if (forwardPressed)
                         {
-                            ev.IsForward = false;
+                            ev.IsForward = true;
                             this.GoForwardCommand.Execute(null);
                         }
                     }
